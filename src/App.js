@@ -1,25 +1,39 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+
+import "./App.css";
 
 class App extends Component {
+  state = {
+    click: 0,
+    show: true
+  };
+
+  IncrementItem = () => {
+    this.setState({
+      click: this.state.click + 1
+    });
+  };
+
+  DecrementItem = () => {
+    this.setState({
+      click: this.state.click - 1
+    });
+  };
+
+  ToogleClick = () => {
+    this.setState({
+      show: !this.state.show
+    });
+  };
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <button onClick={this.IncrementItem}>Click to increment by 1</button>
+        <button onClick={this.DecrementItem}>Click to decrement by 1</button>
+        <button onClick={this.ToogleClick}>
+          {this.state.show ? "Hide number" : "Show number"}
+        </button>
+        {this.state.show ? <h2>{this.state.click}</h2> : ""}
       </div>
     );
   }
